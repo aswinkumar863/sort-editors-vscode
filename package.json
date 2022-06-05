@@ -1,0 +1,131 @@
+{
+  "name": "sort-editors",
+  "displayName": "Sort Editors",
+  "description": "Automatically sorts the editors when they are opened",
+	"author": {
+		"name": "Aswin Kumar",
+		"email": "aswinkumar863@gmail.com"
+	},
+	"license": "MIT",
+	"version": "1.0.0",
+	"publisher": "aswinkumar863",
+	"icon": "images/logo.png",
+	"galleryBanner": {
+		"color": "#B8163D",
+		"theme": "dark"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aswinkumar863/sort-editors-vscode.git"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"Sort Editors",
+		"Sort Open Editors",
+		"Alphabetically Sort Editors",
+		"Sort Tabs",
+		"Sort Files"
+	],
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "markdown": "github",
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Sort Editors",
+      "properties": {
+        "sortEditors.sortEditorsAutomatically": {
+          "type": "boolean",
+          "default": true,
+          "title": "Sort Editors Automatically",
+          "description": "Enable to automatically sort the editors when they are opened."
+        },
+        "sortEditors.sortEditorsOrder": {
+          "type": "string",
+          "default": "fullpath",
+          "title": "Sort Order",
+          "description": "Controls the sorting order of opened editors.",
+          "enum": ["fullpath", "alphabetical"],
+          "enumDescriptions": [
+            "Editors are ordered alphabetically by fullpath inside each editor group.",
+            "Editors are ordered alphabetically by tab name inside each editor group."
+          ]
+        }
+      }
+    },
+    "commands": [{
+        "command": "sortEditors.enableAutoSorting",
+        "title": "Enable Automatic Sorting",
+        "category": "Sort Editors",
+        "enablement": "!config.sortEditors.sortEditorsAutomatically"
+      }, {
+        "command": "sortEditors.disableAutoSorting",
+        "title": "Disable Automatic Sorting",
+        "category": "Sort Editors",
+        "enablement": "config.sortEditors.sortEditorsAutomatically"
+      },
+      {
+        "command": "sortEditors.sortActiveEditor",
+        "title": "Sort Active Editor",
+        "category": "Sort Editors",
+        "enablement": "activeEditor && !activeEditorIsPinned"
+      },
+      {
+        "command": "sortEditors.sortActiveTabEditors",
+        "title": "Sort Opened Editors",
+        "category": "Sort Editors",
+        "enablement": "!activeEditorGroupEmpty"
+      },
+      {
+        "command": "sortEditors.sortAllEditors",
+        "title": "Sort Opened Editors in All Groups",
+        "category": "Sort Editors",
+        "enablement": "multipleEditorGroups"
+      }
+    ],
+    "menus": {
+      "editor/title": [{
+        "command": "sortEditors.sortActiveTabEditors",
+        "group": "sortEditors",
+        "when": "editorFocus"
+      }]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/debounce": "^1.2.1",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.67.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.14.0",
+    "glob": "^8.0.1",
+    "mocha": "^9.2.2",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.4",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "debounce": "^1.2.1"
+  }
+}
