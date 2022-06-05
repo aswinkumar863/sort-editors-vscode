@@ -18,7 +18,7 @@ export function activate(context: ExtensionContext) {
 
 	const progressOptions: ProgressOptions = {
 		location: ProgressLocation.Notification,
-		title: 'Sorting files',
+		title: 'Sorting editors',
 		cancellable: true
 	};
 
