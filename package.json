@@ -2,32 +2,32 @@
   "name": "sort-editors",
   "displayName": "Sort Editors",
   "description": "Automatically sorts the editors when they are opened",
-	"author": {
-		"name": "Aswin Kumar",
-		"email": "aswinkumar863@gmail.com"
-	},
-	"license": "MIT",
-	"version": "1.0.1",
-	"publisher": "aswinkumar863",
-	"icon": "images/logo.png",
-	"galleryBanner": {
-		"color": "#B8163D",
-		"theme": "dark"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/aswinkumar863/sort-editors-vscode.git"
-	},
-	"categories": [
-		"Other"
-	],
-	"keywords": [
-		"Sort Editors",
-		"Sort Open Editors",
-		"Alphabetically Sort Editors",
-		"Sort Tabs",
-		"Sort Files"
-	],
+  "author": {
+    "name": "Aswin Kumar",
+    "email": "aswinkumar863@gmail.com"
+  },
+  "license": "MIT",
+  "version": "2.0.0",
+  "publisher": "aswinkumar863",
+  "icon": "images/logo.png",
+  "galleryBanner": {
+    "color": "#B8163D",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aswinkumar863/sort-editors-vscode.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "Sort Editors",
+    "Sort Open Editors",
+    "Alphabetically Sort Editors",
+    "Sort Tabs",
+    "Sort Files"
+  ],
   "engines": {
     "vscode": "^1.67.0"
   },
@@ -36,6 +36,7 @@
   ],
   "markdown": "github",
   "main": "./dist/extension.js",
+  "browser": "./dist/web/extension.js",
   "contributes": {
     "configuration": {
       "title": "Sort Editors",
@@ -51,7 +52,10 @@
           "default": "fullpath",
           "title": "Sort Order",
           "description": "Controls the sorting order of opened editors.",
-          "enum": ["fullpath", "alphabetical"],
+          "enum": [
+            "fullpath",
+            "alphabetical"
+          ],
           "enumDescriptions": [
             "Editors are ordered alphabetically by fullpath inside each editor group.",
             "Editors are ordered alphabetically by tab name inside each editor group."
@@ -59,12 +63,14 @@
         }
       }
     },
-    "commands": [{
+    "commands": [
+      {
         "command": "sortEditors.enableAutoSorting",
         "title": "Enable Automatic Sorting",
         "category": "Sort Editors",
         "enablement": "!config.sortEditors.sortEditorsAutomatically"
-      }, {
+      },
+      {
         "command": "sortEditors.disableAutoSorting",
         "title": "Disable Automatic Sorting",
         "category": "Sort Editors",
@@ -90,11 +96,13 @@
       }
     ],
     "menus": {
-      "editor/title": [{
-        "command": "sortEditors.sortActiveTabEditors",
-        "group": "sortEditors",
-        "when": "editorFocus"
-      }]
+      "editor/title": [
+        {
+          "command": "sortEditors.sortActiveTabEditors",
+          "group": "sortEditors",
+          "when": "editorFocus"
+        }
+      ]
     }
   },
   "scripts": {
@@ -106,10 +114,13 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "vscode:prepublish-web": "npm run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map"
   },
   "devDependencies": {
-    "@types/debounce": "^1.2.1",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "14.x",
@@ -120,12 +131,11 @@
     "eslint": "^8.14.0",
     "glob": "^8.0.1",
     "mocha": "^9.2.2",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.4",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
-  },
-  "dependencies": {
-    "debounce": "^1.2.1"
   }
 }
