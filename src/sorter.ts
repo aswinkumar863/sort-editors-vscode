@@ -33,7 +33,11 @@ export async function sortActiveEditor(openedEditors: Array<String>) {
 
     for (let i = 0; i < sortedEditors.length; i++) {
         if (openedEditors.includes(sortedEditors[i].uri.path)) {
-            await commands.executeCommand('moveActiveEditor', { to: 'position', value: i + 1 });
+            try {
+                await commands.executeCommand('moveActiveEditor', { to: 'position', value: i + 1 });
+            } catch (error: any) {
+                window.showErrorMessage(error.message ?? 'Unknown Exception');
+            }
             break;
         }
     }
@@ -53,8 +57,12 @@ export async function sortAllOpenedEditors(tabGroups: readonly TabGroup[]) {
             progress.report({ message: `${i + 1}/${sortedEditors.length}` });
 
             if (sortedEditors[i].isPinned === false) {
-                await window.showTextDocument(sortedEditors[i].uri, { preview: false, viewColumn: sortedEditors[i].group.viewColumn });
-                await commands.executeCommand('moveActiveEditor', { to: 'position', value: i + 1 });
+                try {
+                    await window.showTextDocument(sortedEditors[i].uri, { preview: false, viewColumn: sortedEditors[i].group.viewColumn });
+                    await commands.executeCommand('moveActiveEditor', { to: 'position', value: i + 1 });
+                } catch (error: any) {
+                    window.showErrorMessage(error.message ?? 'Unknown Exception');
+                }
             }
 
             progress.report({ increment });
@@ -62,6 +70,10 @@ export async function sortAllOpenedEditors(tabGroups: readonly TabGroup[]) {
     });
 
     if (lastActiveEditor) {
-        await window.showTextDocument(lastActiveEditor.document, { viewColumn: lastActiveEditor.viewColumn });
+        try {
+            await window.showTextDocument(lastActiveEditor.document, { viewColumn: lastActiveEditor.viewColumn });
+        } catch (error: any) {
+            window.showErrorMessage(error.message ?? 'Unknown Exception');
+        }
     }
 }
