@@ -1,9 +1,9 @@
 # Sort Editors for Visual Studio Code
 
-[![Latest Release](https://vsmarketplacebadge.apphb.com/version-short/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors)
-[![Rating](https://vsmarketplacebadge.apphb.com/rating-short/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors#review-details)
-[![Trending Weekly](https://vsmarketplacebadge.apphb.com/trending-weekly/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors)
+[![Latest Release](https://vsmarketplacebadges.dev/version-short/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors)
+[![Installs](https://vsmarketplacebadges.dev/installs/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors)
+[![Rating](https://vsmarketplacebadges.dev/rating-short/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors#review-details)
+[![Trending Weekly](https://vsmarketplacebadges.dev/trending-weekly/aswinkumar863.sort-editors.svg)](https://marketplace.visualstudio.com/items?itemName=aswinkumar863.sort-editors)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/aswinkumar863/sort-editors-vscode?color=blue)
 
 This extension will automatically sort the editors/tabs when they are opened.
